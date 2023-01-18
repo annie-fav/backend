@@ -6,17 +6,7 @@ class ProductManager {
     }
 
     addProduct(product) {
-        if (product.title === false ||
-            product.description === false ||
-            product.price === false ||
-            product.thumbnail === false ||
-            product.code === false ||
-            product.stock === false) {
-            console.log('no tenemos todos los campos')
-            return
-        }
-
-        const _exists = products.find(element => element.code === product.code); 
+        const _exists = this.products.find(element => element.code === product.code); 
         
         if (_exists) {
             console.log(`the product ${product.code} already exists`)
@@ -29,21 +19,33 @@ class ProductManager {
     }
 
     getProducts() {
-        this.products
+       return this.products
     }
 
-    getProductById() {
-        const _id = this.products.find(element => element.id == product.title)
+    getProductById(id) {
+
+        if(!_id) {
+            console.log('not id provided')
+        } 
+       
+        const selected_product = this.products.find(element => element.id == id)
+        return selected_product;
     }
-
-    if(_id) {
-       return true
-    } 
-
 }
 
 class Product {
     constructor(title, description, price, thumbnail, code, stock) {
+        
+        if (product.title === false ||
+            product.description === false ||
+            product.price === false ||
+            product.thumbnail === false ||
+            product.code === false ||
+            product.stock === false) {
+            console.log('no tenemos todos los campos')
+            return
+        }
+
         this.title = title
         this.description = description
         this.price = price
@@ -77,3 +79,5 @@ myProductManager.addProduct(product7);
 myProductManager.addProduct(product8);
 myProductManager.addProduct(product9);
 myProductManager.addProduct(product10);
+
+console.log(myProductManager.getProducts());
