@@ -24,8 +24,8 @@ class ProductManager {
 
     getProductById(id) {
 
-        if(!_id) {
-            console.log('not id provided')
+        if(!id) {
+            console.log('Not found')
         } 
        
         const selected_product = this.products.find(element => element.id == id)
@@ -36,12 +36,12 @@ class ProductManager {
 class Product {
     constructor(title, description, price, thumbnail, code, stock) {
         
-        if (product.title === false ||
-            product.description === false ||
-            product.price === false ||
-            product.thumbnail === false ||
-            product.code === false ||
-            product.stock === false) {
+        if (!title ||
+            !description ||
+            !price ||
+            !thumbnail ||
+            !code ||
+            !stock ) {
             console.log('no tenemos todos los campos')
             return
         }
