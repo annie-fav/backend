@@ -1,5 +1,5 @@
-import { Junior, SemiSenior, Senior } from './Models/Empleado'
-import Proyecto from './Models/Proyecto'
+import { Junior, SemiSenior, Senior } from '../Models/Empleado'
+import Proyecto from '../Models/Proyecto'
 
 const proyecto1 = new Proyecto("Creacion de modelo de BDD", 20, 2000)
 const proyecto2 = new Proyecto("Subida a servidor", 18, 4000)
