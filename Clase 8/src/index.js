@@ -1,17 +1,17 @@
 
 // Servidor
 
-import http from 'http'
-const PORT = 4000
+// import http from 'http'
+// const PORT = 4000
 
-const server = http.createServer((request, response) => {
-    response.end("Hola, este es mi primer servidor en node")
-})
+// const server = http.createServer((request, response) => {
+//     response.end("Hola, este es mi primer servidor en node")
+// })
 
-//Ejecutar servidor
-server.listen(PORT, () => {
-    console.log(`Server on port ${PORT}`)
-});
+// //Ejecutar servidor
+// server.listen(PORT, () => {
+//     console.log(`Server on port ${PORT}`)
+// });
 
 
 
@@ -78,7 +78,39 @@ app.post('/user', (req, res) => {
     const indice = users.length
     users.push({nombre: nombre, apellido: apellido, cargo: cargo, indice})
     res.send("Usuario creado")
+
 })
+
+app.get('/get_users', (req, res) => {
+    res.json(users)
+})
+
+
+app.put('/user/:id', (req, res) => {
+    let id = parseInt(req.params.id)
+    let {nombre, apellido, cargo} = req.body
+    if(users.some(user => user.id === id)) {
+    const indice = users.findIndex(usuario => usuario.id === id)
+    users[indice].cargo = cargo
+    users[indice].apellido = apellido
+    users[indice].nombre = nombre
+    res.send("Usuario actualizado")
+}
+    res.send("Usuario no encontrado")
+})
+
+app.delete('/user/:idUser', async (req, res) => {
+    // console.log(req.params.idUser)
+    const idUser = req.params.idUser
+    const index = users.findIndex(user => user.id === parseInt(idUser))
+    if(index != -1) {
+        users.splice(index, 1)
+        res.send(`Usuario eliminado`)
+    } else {
+        res.send("El usuario no existe")
+    }
+})
+
 
 
 app.listen(PORT, () => {
