@@ -1,9 +1,10 @@
 import express from 'express'
 import { __dirname, __filename } from "./path.js"
-import productRouter from "/Users/annie/Desktop/Backend/Clase 10/src/routes/products.routes.js"
+import productRouter from "/Users/annie/Desktop/Backend/Clase 10-11/src/routes/products.routes.js"
 import multer from 'multer'
 import  { engine } from 'express-handlebars'
 import * as path from 'path'
+import { Server } from "socket.io" 
 
 
 // const upload = multer({ dest:'src/public/img'}) . // ---> forma basica de cargar multer
@@ -22,7 +23,9 @@ const upload = multer({storage: storage})
 const app = express() //app es igual a la ejecucion de express
 const PORT = 4000
 
-
+const server = app.listen(PORT, () => {
+    console.log(`Server on port ${PORT}`)
+})
 
 //Middlewares
 app.use(express.urlencoded({extended:true})) // Permite realizar consultas en la url (req.query)
@@ -30,6 +33,21 @@ app.use(express.json()); // Permite trabajar con json
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', path.resolve(__dirname, './views')) // __dirname + './views'
+
+
+//ServerIO
+const io = new Server(server)
+
+io.on("connection", (socket) => {  // io.on es cuando se establece la conexion
+    console.log("Cliente conectado")
+ 
+    socket.on("mensaje", info => { // Cuando recibo informacion de mi cliente
+        console.log(info)
+    }) 
+
+    socket.emit("mensaje-general", "hola, desde mensaje general")
+    socket.broadcats.emit("mensaje-socket-propio", "hola, desde mensaje socket-propio") // Envio un mensaje a todos los clientes conectados a otros sockets menos al que esta conectado a este socket actualmente
+})
 
 
 // Routes
@@ -75,10 +93,7 @@ app.get('/', (req, res) => {
    })
 })
 
-//
-app.listen(PORT, () => {
-    console.log(`Server on port ${PORT}`)
-})
+
 
 
 

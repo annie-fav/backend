@@ -2,7 +2,7 @@
 Router
 //importo classes y obj para crear instancias de lo q voy a usar
 import { Router } from "express";
-import ProductManager, { Product }  from '/Users/annie/Desktop/Backend/Clase 10/src/controllers/ProductManeger.js';
+import ProductManager, { Product }  from '/Users/annie/Desktop/Backend/Clase 10-11/src/controllers/ProductManeger.js';
 
 // creo instancias
 const productRouter = Router()
