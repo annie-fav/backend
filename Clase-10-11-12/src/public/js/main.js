@@ -4,6 +4,8 @@ const form = document.getElementeById(idForm)
 form.addEventListener('submit', (e) => {
      e.preventDefault()
      //Consulto datos de formulario
+     socket.emit("productoNuevo", [{}])
+     //servidor
 })
 
 socket.emit("mensaje", "Hola, este es mi primera info al servidor") // Enviar informacion a mi servidor

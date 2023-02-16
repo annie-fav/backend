@@ -2,11 +2,11 @@
 Router
 //importo classes y obj para crear instancias de lo q voy a usar
 import { Router } from "express";
-import ProductManager, { Product }  from '/Users/annie/Desktop/Backend/Clase 10-11/src/controllers/ProductManeger.js';
+import ProductManager, { Product }  from '/Users/annie/Desktop/Backend/Clase-10-11-12/src/controllers/ProductManeger.js';
 
 // creo instancias
 const productRouter = Router()
-const productManager = new ProductManager('/Users/annie/Desktop/Backend/Clase 8 y 9/src/ProductManeger.js')
+const productManager = new ProductManager(/Users/annie/Desktop/Backend/Clase-10-11-12/src/controllers/ProductManeger.js)
 
 productRouter.get('/', async (req, res) => { 
     const { limit } = req.query; 

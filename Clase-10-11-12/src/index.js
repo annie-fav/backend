@@ -1,6 +1,6 @@
 import express from 'express'
 import { __dirname, __filename } from "./path.js"
-import productRouter from "/Users/annie/Desktop/Backend/Clase 10-11/src/routes/products.routes.js"
+import productRouter from "./routes/products.routes.js"
 import multer from 'multer'
 import  { engine } from 'express-handlebars'
 import * as path from 'path'
